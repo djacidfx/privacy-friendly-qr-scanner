@@ -21,9 +21,10 @@ package com.secuso.privacyfriendlycodescanner.qrscanner.util
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.secuso.privacyfriendlycodescanner.qrscanner.R
+import com.secuso.privacyfriendlycodescanner.qrscanner.helpers.PreferenceKeys
 
 object WebSearchUtil {
 
@@ -57,7 +58,7 @@ object WebSearchUtil {
         val searchEngines: Array<String> =
             context.resources.getStringArray(R.array.pref_search_engine_values)
         val pref = PreferenceManager.getDefaultSharedPreferences(context)
-        val activeSearchEngine = pref.getString("pref_search_engine", searchEngines[0])
+        val activeSearchEngine = pref.getString(PreferenceKeys.SEARCH_ENGINE, searchEngines[0])
         var i = 0
         while (i < searchEngines.size) {
             if (searchEngines[i] == activeSearchEngine) {
@@ -70,11 +71,29 @@ object WebSearchUtil {
         } else 0
     }
 
-    private fun getSearchEngineURI(context: Context): String {
-        val searchEngineIndex = getPrefSearchEngineIndex(context)
+    private fun getCustomSearchEngineUri(context: Context): String {
         val searchEngineUris: Array<String> =
             context.resources.getStringArray(R.array.pref_search_engine_uris)
-        return searchEngineUris[searchEngineIndex]
+        val pref = PreferenceManager.getDefaultSharedPreferences(context)
+        val customSearchEngineUri = pref.getString(PreferenceKeys.CUSTOM_SEARCH_ENGINE, searchEngineUris[0])
+        if (customSearchEngineUri != null)
+            return customSearchEngineUri
+        return searchEngineUris[0]
+    }
+
+    private fun getSearchEngineURI(context: Context): String {
+        val searchEngineIndex = getPrefSearchEngineIndex(context)
+        val searchEngineValues: Array<String> =
+            context.resources.getStringArray(R.array.pref_search_engine_values)
+        val searchEngineValue = searchEngineValues[searchEngineIndex]
+        if (searchEngineValue == "CUSTOM") {
+            return getCustomSearchEngineUri(context)
+        }
+        else {
+            val searchEngineUris: Array<String> =
+                context.resources.getStringArray(R.array.pref_search_engine_uris)
+            return searchEngineUris[searchEngineIndex]
+        }
     }
 
     private fun getSearchEngineName(context: Context): String {

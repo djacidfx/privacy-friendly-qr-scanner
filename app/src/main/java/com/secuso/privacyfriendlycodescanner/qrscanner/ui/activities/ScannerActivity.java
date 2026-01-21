@@ -355,7 +355,9 @@ public class ScannerActivity extends BaseActivity implements NavigationView.OnNa
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.select_image, menu);
         getMenuInflater().inflate(R.menu.flashlight, menu);
-        getMenuInflater().inflate(R.menu.select_camera, menu);
+        if (Camera.getNumberOfCameras() > 1) {
+            getMenuInflater().inflate(R.menu.select_camera, menu);
+        }
 
         flashOnButton = menu.findItem(R.id.menu_flashlight_on);
         flashOffButton = menu.findItem(R.id.menu_flashlight_off);

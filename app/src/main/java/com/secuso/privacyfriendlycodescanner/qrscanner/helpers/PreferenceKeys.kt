@@ -22,4 +22,5 @@ object PreferenceKeys {
     const val SEARCH_ENGINE = "pref_search_engine"
     const val APP_THEME = "pref_app_theme"
     const val SILENT_SCANNING = "pref_enable_silent_scan"
+    const val CUSTOM_SEARCH_ENGINE = "pref_custom_search_engine_uri"
 }
