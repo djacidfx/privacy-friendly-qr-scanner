@@ -104,7 +104,7 @@ class BackupRestorer : IBackupRestorer {
                 "bool_history", "pref_save_real_image_to_history", "pref_search_engine_enabled", "pref_enable_beep_on_scan", "image_picker_first_click" -> pref
                     .putBoolean(name, reader.nextBoolean())
 
-                PreferenceKeys.SEARCH_ENGINE, PreferenceKeys.APP_THEME -> pref.putString(name, reader.nextString())
+                PreferenceKeys.SEARCH_ENGINE, PreferenceKeys.APP_THEME, PreferenceKeys.CUSTOM_SEARCH_ENGINE -> pref.putString(name, reader.nextString())
                 else -> throw RuntimeException("Unknown preference $name")
             }
         }

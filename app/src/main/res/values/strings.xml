@@ -377,5 +377,5 @@
     </string-array>
     <string name="pref_custom_search_engine_title">Custom Search Engine</string>
     <string name="pref_custom_search_engine_summary">The URL to use as \"Custom Search Engine\". The search string will be inserted at %s.</string>
-    <string name="pref_custom_search_engine_default" translatable="false">https://custom-search-engine.com/?q=%s</string>
+    <string name="pref_custom_search_engine_default" translatable="false">https://duckduckgo.com/?q=%s</string>
 </resources>
