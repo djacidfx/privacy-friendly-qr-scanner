@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,11 +19,11 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         android:checkable="true"
-        app:checkedIconGravity="BOTTOM_END"
         android:clickable="true"
         android:focusable="true"
         android:longClickable="true"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        app:checkedIconGravity="BOTTOM_END">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -72,13 +73,16 @@
 
             <TextView
                 android:id="@+id/item_history_type"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:maxLines="1"
                 android:text="@{viewModel.type}"
                 app:layout_constraintBottom_toBottomOf="@+id/item_history_type_image"
+                app:layout_constraintEnd_toStartOf="@id/item_history_timestamp"
                 app:layout_constraintStart_toEndOf="@id/item_history_type_image"
-                app:layout_constraintTop_toTopOf="@+id/item_history_type_image" />
+                app:layout_constraintTop_toTopOf="@+id/item_history_type_image"
+                tools:text="@string/phone_number" />
 
             <TextView
                 android:layout_width="0dp"
@@ -96,12 +100,14 @@
                 app:layout_constraintStart_toEndOf="@id/item_history_image_container" />
 
             <TextView
+                android:id="@+id/item_history_timestamp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@{viewModel.timestamp}"
                 app:layout_constraintEnd_toStartOf="@id/checkbox"
-                app:layout_constraintTop_toTopOf="@+id/item_history_type" />
+                app:layout_constraintTop_toTopOf="@+id/item_history_type"
+                tools:text="31 December 2025" />
 
             <CheckBox
                 android:id="@+id/checkbox"

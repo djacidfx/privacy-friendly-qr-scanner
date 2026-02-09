@@ -6,6 +6,12 @@
         android:key="bool_history"
         android:summary="@string/pref_description_enable_history"
         android:title="@string/pref_title_enable_history" />
+		
+	<SwitchPreference
+        android:defaultValue="false"
+        android:key="pref_enable_silent_scan"
+        android:summary="@string/pref_description_silent_scan"
+        android:title="@string/pref_title_silent_scan" />
 
     <SwitchPreference
         android:defaultValue="false"
@@ -27,6 +33,14 @@
         android:key="pref_search_engine"
         android:summary="%s"
         android:title="@string/pref_search_engine_title" />
+
+    <EditTextPreference
+        android:defaultValue="@string/pref_custom_search_engine_default"
+        android:key="pref_custom_search_engine_uri"
+        android:selectAllOnFocus="true"
+        android:title="@string/pref_custom_search_engine_title"
+        android:dependency="pref_search_engine_enabled"
+        android:summary='@string/pref_custom_search_engine_summary' />
 
     <ListPreference
         android:defaultValue="@string/pref_app_theme_default"
